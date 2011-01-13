@@ -75,7 +75,7 @@ public class SimpleStatelessServitorTestCase
       );
       InterceptionModelBuilder<ClassMetadata<StatelessServitor>, ?> builder = InterceptionModelBuilder.newBuilderFor(targetClassMetadata);
       // TODO: the interceptor should be put upon the component class, not the view class, but that doesn't work
-      builder.interceptAroundInvoke(Endpoint.class.getMethod("invoke", Serializable.class, Class.class, Method.class, Object[].class)).
+      builder.interceptAroundInvoke(StatelessServitor.class.getMethod("invoke", Serializable.class, Class.class, Method.class, Object[].class)).
               with(interceptor(interceptorReference(new SimpleClassMetadata<StatelessInstanceInterceptor>(StatelessInstanceInterceptor.class)),
                       aroundInvokes(methods(StatelessInstanceInterceptor.class.getMethod("aroundInvoke", InvocationContext.class)))));
       InterceptionModel<ClassMetadata<StatelessServitor>, ?> interceptionModel = builder.build();
